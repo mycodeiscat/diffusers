@@ -26,7 +26,7 @@ from diffusers.utils.import_utils import is_invisible_watermark_available
 
 from ...image_processor import PipelineImageInput, VaeImageProcessor
 from ...loaders import FromSingleFileMixin, StableDiffusionXLLoraLoaderMixin, TextualInversionLoaderMixin
-from ...models import AutoencoderKL, ControlNetModel, UNet2DConditionModel
+from ...models import AutoencoderKL, ControlNetModel, UNet2DConditionModel, ControlNetLLLite
 from ...models.attention_processor import (
     AttnProcessor2_0,
     LoRAAttnProcessor2_0,
@@ -1156,29 +1156,19 @@ class StableDiffusionXLControlNetLitePipeline(
                 #     return_dict=False,
                 # )
 
-                # self.contronet(
-                #     model=self.unet,
-                #     cond=image
-                #     weight=cond_scale,
-                #     start=control_guidance_start, 
-                #     end=control_guidance_end,
-                # )
-
-                down_block_res_samples = self.controlnet(
-                    control_model_input,
-                    t,
-                    encoder_hidden_states=controlnet_prompt_embeds,
-                    controlnet_cond=image,
-                    conditioning_scale=cond_scale
+                self.controlnet.hook(
+                    model=self.unet,
+                    cond=image,
+                    weight=cond_scale,
+                    start=control_guidance_start, 
+                    end=control_guidance_end,
                 )
 
-                    
-
-                if guess_mode and do_classifier_free_guidance:
+                # if guess_mode and do_classifier_free_guidance:
                     # Infered ControlNet only for the conditional batch.
                     # To apply the output of ControlNet to both the unconditional and conditional batches,
                     # add 0 to the unconditional batch to keep it unchanged.
-                    down_block_res_samples = [torch.cat([torch.zeros_like(d), d]) for d in down_block_res_samples]
+                    # down_block_res_samples = [torch.cat([torch.zeros_like(d), d]) for d in down_block_res_samples]
                     # mid_block_res_sample = torch.cat([torch.zeros_like(mid_block_res_sample), mid_block_res_sample])
 
                 # predict the noise residual
