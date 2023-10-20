@@ -78,6 +78,7 @@ else:
             "StableDiffusionXLControlNetImg2ImgPipeline",
             "StableDiffusionXLControlNetInpaintPipeline",
             "StableDiffusionXLControlNetPipeline",
+            "StableDiffusionXLControlNetLitePipeline"
         ]
     )
     _import_structure["deepfloyd_if"] = [
@@ -301,6 +302,7 @@ if TYPE_CHECKING or DIFFUSERS_SLOW_IMPORT:
             StableDiffusionXLControlNetImg2ImgPipeline,
             StableDiffusionXLControlNetInpaintPipeline,
             StableDiffusionXLControlNetPipeline,
+            StableDiffusionXLControlNetLitePipeline,
         )
         from .deepfloyd_if import (
             IFImg2ImgPipeline,
