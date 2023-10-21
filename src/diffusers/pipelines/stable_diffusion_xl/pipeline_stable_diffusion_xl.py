@@ -892,7 +892,7 @@ class StableDiffusionXLPipeline(
                 # TODO: remove.
                 # Only for debugging the compilation/export
                 logger.warning(f'latent_model_input: {latent_model_input}')
-                logger.warning(f'latent_model_input.shape': {latent_model_input.shape})
+                logger.warning(f'latent_model_input.shape: {latent_model_input.shape}')
                 logger.warning(f'latent_model_input.dtype: {latent_model_input.dtype}')
                 logger.warning(f'latent_model_input.device: {latent_model_input.device}')
                 logger.warning(f't: {t}')
