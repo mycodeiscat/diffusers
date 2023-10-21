@@ -888,6 +888,15 @@ class StableDiffusionXLPipeline(
 
                 # predict the noise residual
                 added_cond_kwargs = {"text_embeds": add_text_embeds, "time_ids": add_time_ids}
+
+                # TODO: remove.
+                # Only for debugging the compilation/export
+                print(f'latent_model_input: {latent_model_input}')
+                print(f't: {t}')
+                print(f'prompt_embeds: {prompt_embeds}')
+                print(f'cross_attention_kwargs: {cross_attention_kwargs}')
+                print(f'added_cond_kwargs: {added_cond_kwargs}')
+                
                 noise_pred = self.unet(
                     latent_model_input,
                     t,
