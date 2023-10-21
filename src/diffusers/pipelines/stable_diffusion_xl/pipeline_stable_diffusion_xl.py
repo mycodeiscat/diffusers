@@ -891,17 +891,19 @@ class StableDiffusionXLPipeline(
 
                 # TODO: remove.
                 # Only for debugging the compilation/export
-                print(f'latent_model_input: {latent_model_input}')
-                print(f't: {t}')
-                print(f'prompt_embeds: {prompt_embeds}')
-                print(f'cross_attention_kwargs: {cross_attention_kwargs}')
-                print(f'added_cond_kwargs: {added_cond_kwargs}')
                 logger.warning(f'latent_model_input: {latent_model_input}')
+                logger.warning(f'latent_model_input.shape': {latent_model_input.shape})
+                logger.warning(f'latent_model_input.dtype: {latent_model_input.dtype}')
+                logger.warning(f'latent_model_input.device: {latent_model_input.device}')
                 logger.warning(f't: {t}')
                 logger.warning(f'prompt_embeds: {prompt_embeds}')
+                logger.warning(f'prompt_embeds.shape: {prompt_embeds.shape}')
+                logger.warning(f'prompt_embeds.dtype: {prompt_embeds.dtype}')
+                logger.warning(f'prompt_embeds.device: {prompt_embeds.device}')
                 logger.warning(f'cross_attention_kwargs: {cross_attention_kwargs}')
+
                 logger.warning(f'added_cond_kwargs: {added_cond_kwargs}')
-                
+
 
                 noise_pred = self.unet(
                     latent_model_input,
