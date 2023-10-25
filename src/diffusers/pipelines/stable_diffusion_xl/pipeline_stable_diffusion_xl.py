@@ -903,7 +903,8 @@ class StableDiffusionXLPipeline(
                 logger.warning(f'cross_attention_kwargs: {cross_attention_kwargs}')
 
                 logger.warning(f'added_cond_kwargs: {added_cond_kwargs}')
-
+                for key in added_cond_kwargs.keys():
+                    logger.warning(f'{key} : {added_cond_kwargs[key].shape}')
 
                 noise_pred = self.unet(
                     latent_model_input,
